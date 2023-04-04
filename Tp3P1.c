@@ -7,6 +7,7 @@ void CargaMatriz(int** matriz);
 void MuestraMatriz(int** matriz);
 void Promedio(int **matriz);
 void MaximoYMinimo(int **matriz);
+void LiberaMemoria(int **matriz);
 int main(){
     int **matriz;
     matriz=(int**)malloc(sizeof(int*)*FILAS);
@@ -67,4 +68,11 @@ void MaximoYMinimo(int **matriz){
             printf(".MAXIMO= %d", matriz[i][indiceMax]);
             printf("\n.MINIMO= %d", matriz[i][indiceMin]);
     }
+}
+void LiberaMemoria(int **matriz){
+    int i;
+    for(i=0;i<FILAS;i++){
+        free(matriz[i]);
+    }
+    free(matriz);
 }
