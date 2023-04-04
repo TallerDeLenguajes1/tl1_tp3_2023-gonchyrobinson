@@ -23,6 +23,7 @@ void MuestraVector(Cliente*arre, int cant);
 float CostoTotalProducto(Cliente arre, char*producto);
 float TotalPagar(Cliente arre);
 void TotalPagarCadaCLiente(Cliente* arre, int cant);
+void LiberaMemoria(Cliente *arre, int cant);
 
 int main(){
     int cantClientes;
@@ -46,7 +47,7 @@ int main(){
     printf("Costo total del producto %s:  %.2f", Producto, costoTot);
     printf("\n//////////////////////TOTAL PAGAR CLIENTE//////////////\n");
     TotalPagarCadaCLiente(visitador,cantClientes);
-    free(visitador);
+    LiberaMemoria(visitador,cantClientes);
 }
 void CargaVector(Cliente *arre, int cant){
     int i,j;
@@ -121,4 +122,12 @@ void TotalPagarCadaCLiente(Cliente* arre, int cant){
     for(i=0;i<cant;i++){
         printf("\nTOTAL PAGAR CLIENTE %d:  %.2f", i, TotalPagar(arre[i]));
     }
+}
+void LiberaMemoria(Cliente *arre, int cant){
+    int i,j,k;
+    for(i=0;i<cant;i++){
+        free(arre[i].Productos);
+        free(arre[i].NombreCliente);
+    }
+    free(arre);
 }
